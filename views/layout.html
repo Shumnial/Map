@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <title>{{ locals.title }}</title>
+    <meta content="{{ locals.description }}" name="description">
+    <meta content="" name="keywords">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="telephone=no" name="format-detection">
+
+    {%- if locals.og %}
+      {%- if locals.image %}
+      <meta property="og:image" content="{{ locals.image|img_asset }}">
+      {%- endif %}
+      <meta property="og:title" content="{{ locals.title }}">
+      <meta property="og:description" content="{{ locals.description }}">
+    {%- endif %}
+
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="HandheldFriendly" content="true">
+    <link href="{{ 'style.css'|css_asset }}" rel="stylesheet" type="text/css">
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+  </head>
+  <body>
+    {% import 'macros/macro.html' as Macros %}
+    {% include "blocks/svg-symbols.svg" %}
+    {% block content %}{% endblock content %}
+    {%- if not isExport and _env == 'development'%}
+      {% include "blocks/__add_component.html" %}
+      <!-- include liveReload only in Dev server -->
+      <script src="//localhost:35729/livereload.js"></script>
+    {%- endif %}
+    {%- if _showPages -%}
+      {% include "blocks/__pagelist.html" %}
+    {%- endif -%}
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="javascripts/inputmask/dist/jquery.inputmask.bundle.js"></script>
+    <script src="{{ 'common.js'|js_asset }}"></script>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+{
+	"devStatic": "/",
+	"buildStatic": "",
+	"buildDir": "build",
+	"port": 8080,
+	"dpe": false,
+	"commonData": ["data"],
+	"defaultLayout": "layout.html", 
+	"emptyLayout": "empty_layout.html", 
+	"contentOnly": false,
+	"storage": "https://your-path-to-blob",
+	"buildIgnore": ["less", "images", "svg", "javascripts/sources"],
+	"assetsHash": true,
+	"showPageList": false,
+	"exportWithExtension": ".html",
+	"exportIndexUrl": "/",
+	"lodash": "include=each,filter,map,find,findIndex,sortBy",
+	"pages": [
+		{
+			"name": "index",
+			"route": "/",
+			"pageData": ["index"],
+			"pageVars": {
+				"title": "Главная страница",
+				"description": "Описание страницы",
+				"og": true
+			}
+		}
+	]
+}

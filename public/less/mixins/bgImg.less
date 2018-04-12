@@ -1,0 +1,19 @@
+// @src - путь к файлу. Обязательно строка. т.е. '../images/myimg.png'
+// usage:
+// .myclass {
+//		.bgImg('../images/myimg.png') /* image dementions w: 100px, h:200px*/
+// } => .myclass {
+//		width: 100px;
+//  	height: 200px;
+//  	background-image: url('../images/myimg.png');
+//  	background-repeat: no-repeat;
+//  	background-position: 50% 50%;
+// }
+
+.bgImg (@src) {
+	width: image-width(@src);
+	height: image-height(@src);
+	background-image: url(@src);
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+}

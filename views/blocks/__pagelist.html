@@ -1,0 +1,122 @@
+<!--  PageList  -->
+<style>
+  #pagelist {
+    position: fixed;
+    width: 320px;
+    background-color: #272c31;
+    background: repeating-linear-gradient(
+      45deg,
+      #272c31,
+      #272c31 10px,
+      #2b3136 10px,
+      #2b3136 20px
+    );
+    top: 0;
+    bottom: 0;
+    z-index: 2;
+    font-family: inherit;
+    transform: translateX(-100%);
+    transition: transform .5s, box-shadow .3s;
+    box-shadow: 8px 0 20px rgba(0, 0, 0, 0);
+  }
+
+  #pagelist ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  #pagelist ul li {
+    display: block;
+  }
+
+  input[name="__pageListInput"] {
+    display: none;
+    
+  }
+
+  input[name="__pageListInput"]:checked + #pagelist {
+    transform: translateX(0);
+    box-shadow: 8px 0 20px rgba(0, 0, 0, 0.27);
+  }
+
+  input[name="__pageListInput"]:checked + #pagelist label {
+    opacity: 1;
+  }
+
+  #pagelist ul li a{
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    padding: 16px 20px;
+
+    font-size: 14px;
+    line-height: 18px;
+    transition: color .3s, background-color .3s;
+    border-bottom: 1px solid rgba(255, 255, 255, .05);
+  }
+
+  #pagelist ul li a:hover {
+    background-color: rgba(0, 0, 0, .35);
+    color: #fff;
+  }
+
+  #pagelist label{
+    position: absolute;
+    height: 38px;
+    line-height: 36px;
+    background-color: #272c31;
+    left: 100%;
+    top: 0;
+    cursor: pointer;
+    padding-left: 20px;
+    padding-right: 40px;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    opacity: .5;
+    transition: opacity .3s;
+    border-top-right-radius: 18px;
+    border-bottom-right-radius: 18px;
+    white-space: nowrap;
+  }
+
+  #pagelist label span {
+    display: inline-block;
+    vertical-align: middle;
+    background-color: #fff;
+    color: #000;
+    position: absolute;
+    font-size: 11px;
+    line-height: 12px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 21px;
+    top: 50%;
+    margin-top: -10px;
+    right: 10px;
+  }
+
+  #pagelist label:hover {
+    opacity: 1;
+  }
+  #pagelist > div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    padding-top: 32px;
+  }
+</style>
+<input type="checkbox" name="__pageListInput" id="__pageListInput">
+<div id="pagelist">
+  <label for="__pageListInput">pages <span>{{ _pages.length }}</span></label>
+  <div>
+  <ul>{%- for item in _pages  -%} <li><a href="{{ item.route  | link }}">{{ loop.index }}.&nbsp;{{ item.pageVars.title }}</a></li> {%- endfor -%}</ul>
+  <div>
+</div>
+<!-- / PageList  -->

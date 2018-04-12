@@ -1,0 +1,18 @@
+{% macro Icon(id, class) %}
+	<span class="svg-icon svg-icon--{{ id }} {{ class }}">
+		<svg xmlns="http://www.w3.org/2000/svg" class="svg-icon__glyph" role="img">
+			<use xlink:href="#{{ id }}"></use>
+		</svg>
+	</span>
+{% endmacro %}
+{% macro Contact(data, modifer = 'default') %}
+<li class="c-contact c-contact--{{ modifer }}">
+		<div>{{ Icon('i-user') }}</div>
+    <div class="c-contact__name">{{ data.name }}</div>
+    <div class="c-contact__job">{{ data.lastname }}</div>
+    <div class="c-contact__tel">{{ data.tel }}</div>
+    {% if data.btn %}
+    <button class="c-contact__delete-btn">Delete</button>
+    {% endif %}
+</li>
+{% endmacro %}

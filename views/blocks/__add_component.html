@@ -1,0 +1,32 @@
+<script>
+	(function() {
+		var promptText = 'Названия компонента (Без .less)\nДоступные префиксы\n\c - Компонент\nm - Миксин\nh - Хлпер\n',
+				component;
+		function trigger(e) {
+	    if (e.keyCode === 26 && e.ctrlKey) {
+	    	component = prompt(promptText);
+	    	if (component) {
+	    		var ajax = new XMLHttpRequest();
+	    		ajax.open('GET', '/starter/add_less?id=' + component, true);
+	    		ajax.send(null);
+
+	    		ajax.onreadystatechange = function() {
+	    		  if (ajax.readyState != 4) return;
+
+	    		  if (ajax.status != 200) {
+	    		    alert(ajax.status + ': ' + ajax.statusText);
+	    		  } else {
+	    		  	var data = JSON.parse(ajax.responseText);
+	    		  	if (data.error) {
+	    		  		alert(data.error)
+	    		  	}
+	    		  }
+
+	    		}
+	    	}
+    	}
+    }
+
+    document.addEventListener('keypress', trigger);
+	})();
+</script>

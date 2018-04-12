@@ -1,0 +1,43 @@
+.treangle-top(@w: 10px, @h:@w, @color: #000) {
+	width: 0;
+	height: 0;
+	display: block;
+	
+	border-top: @w solid @color;
+	border-bottom: @w solid transparent;
+	border-left: @h solid transparent;
+	border-right: @h solid transparent;
+}
+
+.treangle-bottom(@w: 10px, @h:@w, @color: #000) {
+	width: 0;
+	height: 0;
+	display: block;
+
+	border-bottom: @w solid @color;
+	border-top: @w solid transparent;
+	border-left: @h solid transparent;
+	border-right: @h solid transparent;
+}
+
+.treangle-left(@w: 10px, @h:@w, @color: #000) {
+	width: 0;
+	height: 0;
+	display: block;
+
+	border-bottom: @h solid transparent;
+	border-top: @h solid transparent;
+	border-left: @w solid @color;
+	border-right: @h solid transparent;
+}
+
+.treangle-right(@w: 10px, @h:@w, @color: #000) {
+	width: 0;
+	height: 0;
+	display: block;
+	
+	border-bottom: @h solid transparent;
+	border-top: @h solid transparent;
+	border-left: @w solid transparent;
+	border-right: @w solid @color;
+}

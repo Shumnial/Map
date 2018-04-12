@@ -1,0 +1,65 @@
+// base variables
+@base-font: 'wf_segoe-ui', Segoe UI, SegoeUI, Tahoma, Verdana, Arial, sans-serif;
+@base-font-size: 16px;
+@base-font-weight: 400;
+@base-line-height: 1.2;
+@base-color: #000;
+@base-bg-color: #fff;
+@base-box-model: border-box;
+
+// color definitions
+@gray: #d7d9da;
+@blue: #00bcf2;
+	// etc...
+
+// layout index
+@zidx-main: 1;
+@zidx-over: 2;
+@zidx-supper: 3;
+
+// typography
+
+@link-color: #00bcf2;
+
+
+// media query brakepoints
+@screen-xs:                        480px;
+@screen-xs-min:                    @screen-xs;
+@screen-phone:               			 @screen-xs-min;
+@screen-sm:                        768px;
+@screen-sm-min:                    @screen-sm;
+@screen-tablet:                    @screen-sm-min;
+@screen-md:                        992px;
+@screen-md-min:                    @screen-md;
+@screen-desktop:                   @screen-md-min;
+@screen-lg:                        1200px;
+@screen-lg-min:                    @screen-lg;
+@screen-lg-desktop:                @screen-lg-min;
+@screen-xl:                        1600px;
+@screen-xl-min:                    @screen-xl;
+@screen-xs-max:                    ( @screen-sm-min - 1 );
+@screen-sm-max:                    ( @screen-md-min - 1 );
+@screen-md-max:                    ( @screen-lg-min - 1 );
+@screen-lg-max:                    ( @screen-xl-min - 1 );
+
+// grid settings
+@grid-columns:              12;
+@grid-gutter-width:         30px;
+
+@container-tablet:             (720px + @grid-gutter-width);
+@container-sm:                 @container-tablet;
+@container-desktop:            (940px + @grid-gutter-width);
+@container-md:                 @container-desktop;
+@container-large-desktop:      (1140px + @grid-gutter-width);
+@container-lg:                 @container-large-desktop;
+
+@section-ofset:                50px;
+
+//typography
+
+@headers-lh: 1.24;
+@headers-mb: 1.24;
+@h1-fz: 40px;
+@h2-fz: 40px;
+@h3-fz: 40px;
+@h4-fz: 40px;

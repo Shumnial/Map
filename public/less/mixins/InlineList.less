@@ -1,0 +1,23 @@
+// Миксин для создания резинового списка, на основе инлайн-блоков.
+// Принимает следующие параметры:
+	// @count - количество элементов в линии(число)
+	// @offset - отступ между элементами(число)
+	// @mb - вертикальный отступ между элементами(число) - по умолчанию равен @offset
+	// @fz - размер шрифта у итема(значение) - по умолчанию равен @base-font-size
+// Пример использования: .InlineList(5, 2) - создаст сетку по 5 элементов в строке с горизональным отступом равным 2%
+
+.inlineList(@count: 4, @offset: 5, @mb: unit(@offset, %), @fz: @base-font-size) {
+	list-style-type: none; // reset default ul styles;
+	padding-left: 0;
+	margin-left: unit(-@offset, %);
+	font-size: 0;
+
+	&__item {
+		display: inline-block;
+		vertical-align: top;
+		width: unit(round((100/@count) - @offset, 3), %);
+		margin-bottom: @mb;
+		margin-left: unit(@offset, %);
+		font-size: @fz;
+	}
+}

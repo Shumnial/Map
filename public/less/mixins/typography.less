@@ -1,0 +1,4 @@
+.makeHeader (@fz, @lh:@fz*1.2, @mb: @fz) {
+	.fz(@fz, @lh);
+	margin-bottom: round(unit(@mb)/(unit(@fz)*1em), 3);
+}

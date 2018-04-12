@@ -1,0 +1,36 @@
+{% extends layout %}
+{% block content %}
+{% set persons = [
+	{
+		name: "Иван",
+		lastname: "Иванович"
+	},
+	{
+		name: "Василий",
+		lastname: "Васильевич"
+	},{
+		name: "Никита",
+		lastname: "Шумаков"
+	},{
+		name: "Як",
+		lastname: "Якович",
+		btn: true
+	}
+] %}
+<section class="l-section">
+	<div class="l-container">
+		<div class="map" id="map">
+			<div class="info">
+				<p class="info__text"></p>
+				<button class="close-btn"></button>
+			</div>
+		</div>
+		<form class="objects-form">
+			<input class="objects-form__name" name="name" type="text" placeholder="Название объекта" required="">
+			<input class="objects-form__address" name="address" type="text" placeholder="Улица" required="">
+			<textarea class="objects-form__info" name="info" placeholder="Описание..."></textarea>
+			<button type="submit" class="contacts-form__add-btn">ДОБАВИТЬ</button>
+		</form>
+	</div>
+</section>
+{% endblock %}

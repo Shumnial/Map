@@ -1,0 +1,4 @@
+.remFz(@val: 16) {
+	font-size: unit(@val, px); // for old ie
+	font-size: round(unit(@val)/unit(@base-font-size, rem), 3);
+}

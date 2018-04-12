@@ -1,0 +1,35 @@
+// usage:
+// selector {
+//		.emMb(20, 10)
+//	} => selector {
+//		margin-bottom: 2em;
+//	}
+//
+//	selector2 {
+//		.emMargin(10, 20, 10, 20, 10)
+//	} => selector2 {
+//		margin: 1em 2em 1em 2em
+//	}
+//
+
+.emMb(@val: @base-font-size, @base: @base-font-size) {
+	margin-bottom: round(unit(@val)/unit(@base-font-size, em), 3);
+}
+
+.emMt(@val: @base-font-size, @base: @base-font-size) {
+	margin-top: round(unit(@val)/unit(@base-font-size, em), 3);
+}
+
+.emMr(@val: @base-font-size, @base: @base-font-size) {
+	margin-right: round(unit(@val)/unit(@base-font-size, em), 3);
+}
+
+.emMl(@val: @base-font-size, @base: @base-font-size) {
+	margin-left: round(unit(@val)/unit(@base-font-size, em), 3);
+}
+.emMargin(@top, @right, @left, @bottom, @base: @base-font-size) {
+	.emMt(@top, @base); 
+	.emMr(@top, @base);
+	.emMb(@top, @base); 
+	.emMl(@top, @base);
+}

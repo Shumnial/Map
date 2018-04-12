@@ -1,0 +1,11 @@
+.env/*
+*.pyc
+__design/*
+node_modules/*
+.idea/
+*.sublime-project
+*.sublime-workspace
+html/*
+build/*
+package-lock.json
+./*zip

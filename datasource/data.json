@@ -1,0 +1,42 @@
+{
+	"title": "Заголовок страницы",
+	"persons": [
+		{
+			"name": "Иван",
+			"lastname": "Иванович",
+			"tel": "89630380364"
+		},
+		{	
+			"name": "Василий",
+			"lastname": "Васильевич",
+			"tel": "89630380364"
+		},
+		{
+			"name": "Никита",
+			"lastname": "Шумаков",
+			"tel": "89630380364",
+			"btn": true
+		},
+		{	
+			"name": "Як",
+			"lastname": "Якович",
+			"tel": "89630380364"
+		}],
+	"placeholders": [
+		{
+			"name": "Name1",
+			"lastname": "Lastname1",
+			"tel": "Telephone1"
+		},
+		{
+			"name": "Name2",
+			"lastname": "Lastname2",
+			"tel": "Telephone2"
+		},
+		{
+			"name": "Name3",
+			"lastname": "Lastname3",
+			"tel": "Telephone3",
+			"btn": true
+		}]
+}

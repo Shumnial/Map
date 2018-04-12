@@ -1,0 +1,37 @@
+<!doctype html>
+<!--[if IE 7]>
+<html class="ie7 lt-ie10 lt-ie9 lt-ie8 no-js" lang="ru"><![endif]-->
+<!--[if IE 8]>
+<html class="ie8 lt-ie10 lt-ie9 no-js" lang="ru"><![endif]-->
+<!--[if IE 9 ]>
+<html class="ie9 lt-ie10 no-js" lang="ru"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html class="no-js" lang="ru">
+<!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <title>Заголовок</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="HandheldFriendly" content="true">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <link href="/stylesheets/style.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    {% block content %}{% endblock content %}
+    {% include "blocks/dpe_footer.html" %}
+    {%- if isExport %}
+      {#% include "blocks/dpe_analitics.html" %#}
+    {%- endif %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script> 
+    {%- if isExport %}
+      <script src="/javascripts/app.min.js"></script>
+      {%- else %}
+      <!-- include liveReload only in Dev server -->
+      <script src="//localhost:35729/livereload.js"></script>
+      <script src="/javascripts/app.js"></script>
+    {%- endif %}
+  </body>
+</html>
