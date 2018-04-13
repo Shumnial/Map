@@ -13,32 +13,11 @@ $(function() {
 		doSearch();
 	});
 
-	let mapObjects = [{
-			id: 1,
-			lon: 56.83,
-			lat: 60.60,
-			address: 'ул. Куйбышева 55',
-			markName: 'Метка 1',
-			title: 'Точка',
-			description: 'Я РОДИЛСЯ',
-			info: 'ЗАКРОЙ МЕНЯ И УХОДИ НЕ ПОРТИ ПЕЙЗАЖ ПЛЗ',
-			img: 'https://www.karusel-tv.ru/media/suit/image_in_broadcast/media/image/2011/08/22/60506/24_13140160941.jpg'
-		}, {
-			id: 2,
-			lon: 56.82,
-			lat: 60.59,
-			address: 'ул. Куйбышева 45',
-			markName: 'Метка 2',
-			title: 'А я вторая точка',
-			description: 'На меня тоже нажали',
-			info: 'SCRRRAPAPAPA'
-		}];
+	let mapObjects = [];
 
 	getFromLocal();
 
 	function doSearch() {
-
-
 		myCollection.removeAll();
 
 		for (let i = 0; i < mapObjects.length; i++) {
@@ -47,14 +26,13 @@ $(function() {
 
 		function buildPlacemark(point) {
 			const layout = ymaps.templateLayoutFactory.createClass(
-				`<div class="item">
-				<h3>{{properties.title}}</h3>
-				<h3>{{properties.name}}</h3>
-				<h3>{{properties.address}}</h3>
+				`<div class="item" data-id="{{properties.id}}" data-descr="{{properties.descr}}">
+				<h3 class="item__name">{{properties.name}}</h3>
+				<h3 class="item__address">{{properties.address}}</h3>
 				<img src="{{properties.img}}">
-				<p>{{properties.description}}</p>
-				<a href="#" class="more-info" data-id="{{properties.id}}">Узнать подробнее</a>
-				<button class="remove-placemark">{{properties.buttonText}}</button>
+				<a href="#" class="more-info">Узнать подробнее</a>
+				<button class="edit-placemark">Изменить</button>
+				<button class="remove-placemark">Удалить</button>
 				</div>`, 
 				{
 					build: function() {
@@ -62,16 +40,27 @@ $(function() {
 						$('.remove-placemark').on('click', this.onRemove);
 						$('.more-info').on('click', this.onMoreInfoClick);
 						$('.close-btn').on('click', this.onBtnCloseClick);
+						$('.edit-placemark').on('click', this.onBtnEditClick);
 					},
 					clear: function() {
 						$('.remove-placemark').off('click', this.onRemove);
 						$('.more-info').off('click', this.onMoreInfoClick);
 						$('.close-btn').off('click', this.onBtnCloseClick);
+						$('.edit-placemark').off('click', this.onBtnEditClick);
 						layout.superclass.clear.call(this);
 					},
 					onRemove: function() {
 						alert('Удаление метки с id ' + point.id);
 						// post на сервер
+						const data = localStorage.getItem('objects');
+						const parsedData = JSON.parse(data);
+						const id = $(this).closest('.item').attr('data-id');
+						parsedData.forEach((el, i) => {
+							if (id == el.id) {
+								mapObjects.splice(i, 1);
+								localStorage.setItem('objects', JSON.stringify(mapObjects));
+							}
+						});
 						myCollection.remove(placemark);
 					},
 					onMoreInfoClick: function() {
@@ -80,18 +69,32 @@ $(function() {
 					},
 					onBtnCloseClick: function() {
 						$('.info').hide();
+					},
+					onBtnEditClick: function() {
+						const nameField = $('.objects-form__name');
+						const addressField = $('.objects-form__address');
+						const infoField = $('.objects-form__info');
+						const itemName = $(this).siblings('.item__name').text();
+						const itemAddress = $(this).siblings('.item__address').text();
+						const itemDescr = $(this).closest('.item').attr('data-descr');
+						nameField.val(itemName);
+						addressField.val(itemAddress);
+						infoField.val(itemDescr);
+						$('.overlay').show();
+						$('.objects-form').on('submit', () => {
+							$('.overlay').hide();
+							$(this).siblings('.remove-placemark').click();
+						});
 					}
 				});
 
 			const placemark = new ymaps.Placemark([point.lon, point.lat], {
 				iconContent: point.markName,
-				title: point.title,
 				name: point.name,
 				address: point.address,
-				description: point.description,
+				descr: point.info,
 				img: point.img,
-				id: '',
-				buttonText: "Удалить метку"
+				id: point.id
 			}, {
 				balloonContentLayout: layout,
             preset: 'twirl#nightStretchyIcon' // иконка растягивается под контент
@@ -138,13 +141,14 @@ $(function() {
 			obj[el.name] = el.value;
 		});
 
-		getCoords(obj.address).then(data => {
+		getCoords(`'г. Екатеринбург, ${obj.address}`).then(data => {
 			if(!data) {
 				alert('Неверный адрес');
 				return;
 			}
 			obj.lon = data[0];
 			obj.lat = data[1];
+			obj.id = Date.now();
 			mapObjects.push(obj);
 			doSearch();
 			saveInLocal();

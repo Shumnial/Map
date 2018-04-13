@@ -20,14 +20,15 @@
 <section class="l-section">
 	<div class="l-container">
 		<div class="map" id="map">
+			<div class="overlay"></div>
 			<div class="info">
 				<p class="info__text"></p>
 				<button class="close-btn"></button>
 			</div>
 		</div>
-		<form class="objects-form">
-			<input class="objects-form__name" name="name" type="text" placeholder="Название объекта" required="">
-			<input class="objects-form__address" name="address" type="text" placeholder="Улица" required="">
+		<form action="#" method="post" class="objects-form">
+			<input class="objects-form__name" name="name" type="text" placeholder="Название объекта" required="" minlength="3">
+			<input class="objects-form__address" name="address" type="text" placeholder="Улица" required="" minlength="3">
 			<textarea class="objects-form__info" name="info" placeholder="Описание..."></textarea>
 			<button type="submit" class="contacts-form__add-btn">ДОБАВИТЬ</button>
 		</form>
